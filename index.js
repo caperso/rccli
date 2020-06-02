@@ -30,7 +30,7 @@ program
   });
 
 function createComponent(componentName, styleType) {
-  const targetPath = path.join(__dirname, componentName);
+  const targetPath = path.resolve(process.cwd(), componentName);
   // path check
   try {
     fs.accessSync(targetPath);
