@@ -70,7 +70,7 @@ function generateJSX(componentName) {
   const content = `import React from "react";
 import "./${componentName}.scss";
 
-export const Route = () => {
+export const ${componentName} = () => {
     return <div>
   
     </div>;
