@@ -1,5 +1,5 @@
 {
-  "name": "rccli",
+  "name": "rcct",
   "version": "0.1.0",
   "description": "react-component cli tools, react-component file generator",
   "main": "index.js",
@@ -25,12 +25,10 @@
   },
   "homepage": "https://github.com/caperso/rccli#readme",
   "bin": {
-    "rccli": "./index.js"
+    "rcc": "./index.js"
   },
   "dependencies": {
     "chalk": "^4.0.0",
-    "commander": "^5.1.0",
-    "cross-spawn": "^7.0.3",
-    "fs-extra": "^9.0.0"
+    "commander": "^5.1.0"
   }
 }
