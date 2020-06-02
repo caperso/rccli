@@ -78,3 +78,5 @@ export const Route = () => {
     `;
   return content;
 }
+
+program.parse(process.argv);
