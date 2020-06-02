@@ -1,0 +1,36 @@
+{
+  "name": "rccli",
+  "version": "0.1.0",
+  "description": "react-component cli tools, react-component file generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caperso/rccli.git"
+  },
+  "keywords": [
+    "rc",
+    "cli",
+    "tool",
+    "react",
+    "file",
+    "template"
+  ],
+  "author": "caperso",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caperso/rccli/issues"
+  },
+  "homepage": "https://github.com/caperso/rccli#readme",
+  "bin": {
+    "rccli": "./index.js"
+  },
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "commander": "^5.1.0",
+    "cross-spawn": "^7.0.3",
+    "fs-extra": "^9.0.0"
+  }
+}
