@@ -78,24 +78,3 @@ export const Route = () => {
     `;
   return content;
 }
-
-// new command
-program
-  // 定义 new 命令，且后面跟一个必选的 projectName 参数
-  .command("new <projectName>")
-  // 对 new 命令的描述
-  .description("use create-react-app create a app")
-  // 定义使用 new 命令之后可以使用的选项 -n（使用 npm 来安装依赖）
-  // 在使用 create-react-app 中，我们可以可以添加 --use-npm 选项，来使用 npm 安装依赖（默认使用 yarn 安装依赖）
-  // 所以，我将这个选项添加到了 rcli 中
-  .option("-n, --use-npm", "Whether to use npm to download dependencies")
-  // 定义执行 new 命令后调用的回调函数
-  // 第一个参数便是在定义 new 命令时的必选参数 projectName
-  // cmd 中包含了命令中选项的值，当我们在 new 命令中使用了 --use-npm 选项时，cmd 中的 useNpm 属性就会为 true，否则为 undefined
-  .action(function (projectName, cmd) {
-    const isUseNpm = cmd.useNpm ? true : false;
-    // 创建 react app
-    createReactApp(projectName, isUseNpm);
-  });
-
-program.parse(process.argv);
