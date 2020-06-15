@@ -20,16 +20,23 @@ program
   .command("g")
   .description("generate a react component template")
   .option("-c, --component-name <componentName>", "name of your new component")
+  .option("-m, --with-mobx", "Is this a mobx component")
   .action(function (cmd) {
     if (!cmd.componentName) {
       console.log(chalk.red("please enter the name component"));
       process.exit(1);
     }
 
-    createComponent(cmd.componentName, cmd.styleFileType);
+    createComponent(cmd.componentName, cmd.styleFileType, cmd.withMobx);
   });
 
-function createComponent(componentName, styleType) {
+/**
+ *
+ *
+ * @param {*} componentName
+ * @param {*} styleType
+ */
+function createComponent(componentName, styleType, mobx) {
   const targetPath = path.resolve(process.cwd(), componentName);
   // path check
   try {
@@ -41,7 +48,11 @@ function createComponent(componentName, styleType) {
     //  generate files
     const indexJS = generateIndexJS(componentName);
     const styleFile = generateStyleFile(styleType);
-    const componentJSX = generateJSX(componentName);
+    console.log(mobx);
+    
+    const componentJSX = mobx
+      ? generateMobxJSX(componentName)
+      : generateJSX(componentName);
 
     fs.mkdirSync(targetPath);
     fs.writeFileSync(path.resolve(targetPath, `index.js`), indexJS);
@@ -76,6 +87,19 @@ export const ${componentName} = () => {
     </div>;
 };
     `;
+  return content;
+}
+
+function generateMobxJSX(componentName) {
+  const content = `import React from "react";
+import "./${componentName}.scss";
+import { useObserver, observer } from "mobx-react";
+
+export const ${componentName} = observer(() => {
+  return useObserver(() => <div></div>);
+});
+
+`;
   return content;
 }
 
