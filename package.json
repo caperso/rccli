@@ -1,6 +1,6 @@
 {
   "name": "rcct",
-  "version": "0.1.6",
+  "version": "1.0.0",
   "description": "react-component cli tools, react-component file generator",
   "main": "index.js",
   "scripts": {
