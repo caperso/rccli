@@ -1,106 +1,64 @@
 #!/usr/bin/env node
-
 "use strict";
-
-const { program } = require("commander");
-const chalk = require("chalk");
-const fs = require("fs");
-const path = require("path");
-
-//TODO
-// .option(
-//     "-s, --styleFileType",
-//     "like scss / less / css, default using scss"
-//   )
-// .option("-T, --type ", "creat tsx file instead jsx")
-// .option("-US, --unique-style ", "unique style wrapper class name")
-// const componentTSX = generateTSX();
-
+exports.__esModule = true;
+var uuid_1 = require("uuid");
+var fileGenerator_1 = require("./fileGenerator");
+var program = require("commander").program;
+var chalk = require("chalk");
+var fs = require("fs");
+var path = require("path");
 program
-  .command("g")
-  .description("generate a react component template")
-  .option("-c, --component-name <componentName>", "name of your new component")
-  .option("-m, --with-mobx", "Is this a mobx component")
-  .action(function (cmd) {
-    if (!cmd.componentName) {
-      console.log(chalk.red("please enter the name component"));
-      process.exit(1);
+    .command("g")
+    .description("Generate a react component template")
+    .option("-c, --component-name <componentName>", "Name of your new component")
+    .option("-m, --with-mobx", "Flag true this a mobx component")
+    .option("-t, --with-ts ", "Creat tsx file instead of jsx")
+    .option("-s, --style-file-type <styleFileType>", "Like scss / less / css, default using scss")
+    .option("-u, --unique-class ", "Unique style wrapper class name")
+    .action(function (cmd) {
+    var componentName = cmd.componentName, styleFileType = cmd.styleFileType;
+    // if (process.env.NODE_ENV === "development") {
+    console.log(chalk.green("inputs::", cmd));
+    // }
+    if (!componentName) {
+        console.log(chalk.red("Please enter the name component"));
+        process.exit(1);
     }
-
-    createComponent(cmd.componentName, cmd.styleFileType, cmd.withMobx);
-  });
-
+    if (!styleFileType) {
+        cmd.styleFileType = "scss";
+        console.log(chalk.green("No style file extension provided, using default scss file"));
+    }
+    var targetPath = path.resolve(process.cwd(), componentName);
+    try {
+        fs.accessSync(targetPath);
+        // exit when path exists
+        console.log(chalk.red("Failed: path " + targetPath + " already exists"));
+        process.exit(1);
+    }
+    catch (e) {
+        createComponent(targetPath, cmd);
+    }
+});
 /**
- *
- *
+ * create component
  * @param {*} componentName
  * @param {*} styleType
+ * @param {boolean} isMobx
  */
-function createComponent(componentName, styleType, mobx) {
-  const targetPath = path.resolve(process.cwd(), componentName);
-  // path check
-  try {
-    fs.accessSync(targetPath);
-    // exit when path exists
-    console.log(chalk.red(`Fail: path ${targetPath} already exists`));
-    process.exit(1);
-  } catch {
-    //  generate files
-    const indexJS = generateIndexJS(componentName);
-    const styleFile = generateStyleFile(styleType);
-    console.log(mobx);
-    
-    const componentJSX = mobx
-      ? generateMobxJSX(componentName)
-      : generateJSX(componentName);
-
+function createComponent(targetPath, _a) {
+    var withMobx = _a.withMobx, withTs = _a.withTs, componentName = _a.componentName, styleFileType = _a.styleFileType, uniqueClass = _a.uniqueClass;
+    var uid = uniqueClass ? uuid_1.v4().slice(0, 5) : undefined;
+    //  generate file contents
+    var indexFileContent = fileGenerator_1.generateIndexFile(componentName);
+    var styleFileContent = fileGenerator_1.generateStyleFile(componentName, uid);
+    var componentContent = withMobx
+        ? fileGenerator_1.generateMobxComponent(componentName, styleFileType, uid)
+        : fileGenerator_1.generateComponent(componentName, styleFileType, uid);
     fs.mkdirSync(targetPath);
-    fs.writeFileSync(path.resolve(targetPath, `index.js`), indexJS);
-    fs.writeFileSync(
-      path.resolve(targetPath, `${componentName}.scss`),
-      styleFile
-    );
-    fs.writeFileSync(
-      path.resolve(targetPath, `${componentName}.jsx`),
-      componentJSX
-    );
-    console.log(chalk.green(`Success: Component was generated!`));
+    fs.writeFileSync(path.resolve(targetPath, "index." + (withTs ? "t" : "j") + "s"), indexFileContent);
+    fs.writeFileSync(path.resolve(targetPath, componentName + "." + styleFileType), styleFileContent);
+    fs.writeFileSync(path.resolve(targetPath, componentName + "." + (withTs ? "t" : "j") + "sx"), componentContent);
+    console.log(chalk.green("Success: Component was generated!"));
     process.exit(0);
-  }
 }
-
-function generateIndexJS(componentName, isTS) {
-  return `export {${componentName} as default} from './${componentName}.jsx'`;
-}
-
-function generateStyleFile(isUnique) {
-  return ``;
-}
-
-function generateJSX(componentName) {
-  const content = `import React from "react";
-import "./${componentName}.scss";
-
-export const ${componentName} = () => {
-    return <div>
-  
-    </div>;
-};
-    `;
-  return content;
-}
-
-function generateMobxJSX(componentName) {
-  const content = `import React from "react";
-import "./${componentName}.scss";
-import { useObserver, observer } from "mobx-react";
-
-export const ${componentName} = observer(() => {
-  return useObserver(() => <div></div>);
-});
-
-`;
-  return content;
-}
-
 program.parse(process.argv);

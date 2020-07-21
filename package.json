@@ -4,7 +4,7 @@
   "description": "react-component cli tools, react-component file generator",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "set NODE_ENV=development&&node index g -c test"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,13 @@
     "rcc": "./index.js"
   },
   "dependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/commander": "^2.12.2",
+    "@types/node": "^14.0.24",
+    "@types/uuid": "^8.0.0",
     "chalk": "^4.0.0",
-    "commander": "^5.1.0"
+    "commander": "^5.1.0",
+    "typescript": "^3.9.7",
+    "uuid": "^8.2.0"
   }
 }
