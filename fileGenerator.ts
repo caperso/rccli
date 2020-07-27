@@ -31,7 +31,7 @@ export function generateComponent(
 import "./${componentName}.${styleFileType}";
 
 export const ${componentName} = () => {
-    return <div className="${componentName}-wrapper-${uid ? uid : ""}">
+    return <div className="${componentName}-wrapper${uid ? `-${uid}` : ""}">
   
     </div>;
 };
