@@ -14,14 +14,12 @@ const use${name} = () => {
 export default useA;`;
 }
 
-export function generateIndexFile(
-  componentName: string,
-) {
+export function generateIndexFile(componentName: string) {
   return `export {${componentName} as default} from './${componentName}'`;
 }
 
 export function generateStyleFile(componentName: string, uid?: string) {
-  return `.${componentName}-wrapper-${uid ? uid : ""}{}`;
+  return `.${componentName}-wrapper${uid ? `-${uid}` : ""}{}`;
 }
 
 export function generateComponent(
@@ -52,8 +50,8 @@ import { useObserver, observer } from "mobx-react";
 
 export const ${componentName} = observer(() => {
   return useObserver(() => <div className="${componentName}-wrapper${
-  uid ? uid : ""
-}"></div>);
+    uid ? uid : ""
+  }"></div>);
 });
 `;
   return content;

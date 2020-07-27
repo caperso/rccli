@@ -17,9 +17,6 @@ program
     .option("-u, --unique-class ", "Unique style wrapper class name")
     .action(function (cmd) {
     var componentName = cmd.componentName, styleFileType = cmd.styleFileType;
-    // if (process.env.NODE_ENV === "development") {
-    console.log(chalk.green("inputs::", cmd));
-    // }
     if (!componentName) {
         console.log(chalk.red("Please enter the name component"));
         process.exit(1);

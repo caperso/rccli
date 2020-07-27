@@ -10,7 +10,7 @@ function generateIndexFile(componentName) {
 }
 exports.generateIndexFile = generateIndexFile;
 function generateStyleFile(componentName, uid) {
-    return "." + componentName + "-wrapper-" + (uid ? uid : "") + "{}";
+    return "." + componentName + "-wrapper" + (uid ? "-" + uid : "") + "{}";
 }
 exports.generateStyleFile = generateStyleFile;
 function generateComponent(componentName, styleFileType, uid) {
