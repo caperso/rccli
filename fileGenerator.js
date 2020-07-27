@@ -15,7 +15,7 @@ function generateStyleFile(componentName, uid) {
 exports.generateStyleFile = generateStyleFile;
 function generateComponent(componentName, styleFileType, uid) {
     if (styleFileType === void 0) { styleFileType = "scss"; }
-    var content = "import React from \"react\";\nimport \"./" + componentName + "." + styleFileType + "\";\n\nexport const " + componentName + " = () => {\n    return <div className=\"" + componentName + "-wrapper-" + (uid ? uid : "") + "\">\n  \n    </div>;\n};\n      ";
+    var content = "import React from \"react\";\nimport \"./" + componentName + "." + styleFileType + "\";\n\nexport const " + componentName + " = () => {\n    return <div className=\"" + componentName + "-wrapper" + (uid ? "-" + uid : "") + "\">\n  \n    </div>;\n};\n      ";
     return content;
 }
 exports.generateComponent = generateComponent;
