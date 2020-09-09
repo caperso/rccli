@@ -8,7 +8,7 @@ import {
   generateIndexFile,
   generateMobxComponent,
   generateStyleFile
-} from "./fileGenerator";
+} from "./src/fileGenerator";
 
 const { program } = require("commander");
 const chalk = require("chalk");

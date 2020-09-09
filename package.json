@@ -2,7 +2,7 @@
   "name": "rcct",
   "version": "1.1.0",
   "description": "react-component cli tools, react-component file generator",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "rm -rf test&&tsc&&set NODE_ENV=development&& node index g -c test -u -s less -m -t"
   },

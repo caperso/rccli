@@ -2,7 +2,7 @@
 "use strict";
 exports.__esModule = true;
 var uuid_1 = require("uuid");
-var fileGenerator_1 = require("./fileGenerator");
+var fileGenerator_1 = require("./src/fileGenerator");
 var program = require("commander").program;
 var chalk = require("chalk");
 var fs = require("fs");
