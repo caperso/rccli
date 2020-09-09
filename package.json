@@ -1,14 +1,14 @@
 {
   "name": "rcct",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "react-component cli tools, react-component file generator",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "rm -rf test&&tsc&&set NODE_ENV=development&& node index g -c test -u -s less -m -t"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/caperso/rccli.git"
+    "url": "git+https://github.com/caperso/rcct.git"
   },
   "keywords": [
     "rc",
@@ -16,16 +16,18 @@
     "tool",
     "react",
     "file",
-    "template"
+    "template",
+    "react component",
+    "react component generate"
   ],
   "author": "caperso",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/caperso/rccli/issues"
+    "url": "https://github.com/caperso/rcct/issues"
   },
-  "homepage": "https://github.com/caperso/rccli#readme",
+  "homepage": "https://github.com/caperso/rcct#readme",
   "bin": {
-    "rcc": "./index.js"
+    "rcct": "./index.js"
   },
   "dependencies": {
     "@types/chalk": "^2.2.0",
