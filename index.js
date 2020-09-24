@@ -11,8 +11,8 @@ program
     .command("g")
     .description("Generate a react component template")
     .option("-c, --component-name <componentName>", "Name of your new component")
-    .option("-m, --with-mobx", "Flag true this a mobx component")
-    .option("-t, --with-ts ", "Creat tsx file instead of jsx")
+    .option("-m, --with-mobx", "Flag true will create a mobx wrapped component")
+    .option("-t, --with-ts ", "Create tsx file instead of jsx")
     .option("-s, --style-file-type <styleFileType>", "Like scss / less / css, default using scss")
     .option("-u, --unique-class ", "Unique style wrapper class name")
     .action(function (cmd) {
