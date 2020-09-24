@@ -12,23 +12,33 @@
 
 ## How to use 🤔
 
-- `npm install rcct -g`
+- install via npm
 
-- use in command-line (like bash / cmd / ...)
+  ⌨️`npm install rcct -g`
 
-  `rcct g -c MyComponent -t`
+- use in command-line (like bash)
+
+  - switch your destination path
+
+    ⌨️`cd /home/user/me/project/component` (mac or linux)
+
+    ⌨️`cd c:\\user\\me\\project\\component` (windows)
+
+  - generate your component
+
+    ⌨️`rcct g -c MyComponent -t`
 
 ## Commands
 
-- basic command
+### basic command
 
 `rcct g -c <componentName>`
 
-`"g": "Generate a react component template"`
+"g": `"Generate a react component template"`
 
-`"-c": "Name of your new component"`
+"-c": `"Name of your new component"`
 
-- options
+### options
 
 ```js
 "-m" or "--with-mobx":
@@ -38,7 +48,8 @@
 "-u" or "--unique-class":
     "Unique style wrapper class name"
 "-s <styleFileType>" or "--style-file-type <styleFileType>":
-    "enter <styleFileType> Like scss / less / css, default using scss"
+    "enter <styleFileType>"
+    "Like scss / less / css, default using scss"
 ```
 
 ## About developing
